@@ -59,6 +59,9 @@ defineProps({
   items: {
     type: Array,
     required: true
+  },
+  group: {
+    type: String
   }
 })
 

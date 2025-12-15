@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+  <div class="page">
     <h1>Ejemplo de Drag and Drop con Vue</h1>
     <p class="intro">
       Arrastra los elementos entre la zona libre y el contenedor.
@@ -7,161 +7,134 @@
 
     <div class="zones">
       <!-- <div> -->
-        <p>hola esta es la primera frase, el primer hueco:
-      <!-- Zona libre -->
+      <p>
+        hola esta es la primera frase, el primer hueco:
+        <!-- Zona libre -->
+        <DropZone
+          class="drop-zone--outside"
+          zone-id="gap-arma"
+          title="_____________"
+          :items="itemsByZone('gap-arma')"
+          group="arma"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
+      </p>
+      <p>
+        o pero que ha pasado para que de repente haya otro hueco
+        <DropZone
+          class="drop-zone--outside"
+          zone-id="gap-lugar"
+          title="_____________"
+          :items="itemsByZone('gap-lugar')"
+          group="lugar"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
+      </p>
+
+      <!-- Contenedor -->
       <DropZone
-        class="drop-zone--outside"
-        zone-id="outside"
-        title="Zona libre"
-        :items="itemsByZone('outside')"
+        class="drop-zone--container"
+        zone-id="container-arma"
+        title="hueco 1"
+        :items="itemsByZone('container-arma')"
+        group="arma"
         @drag-start="onDragStart"
         @drag-over="onDragOver"
         @drop="onDrop"
       />
 
-      <!-- Contenedor -->
       <DropZone
         class="drop-zone--container"
-        zone-id="container"
-        title="CONTENEDOR"
-        :items="itemsByZone('container')"
+        zone-id="container-lugar"
+        title="hueco 2"
+        :items="itemsByZone('container-lugar')"
+        group="lugar"
         @drag-start="onDragStart"
         @drag-over="onDragOver"
         @drop="onDrop"
       />
-    </p>
     </div>
 
     <p id="p1">{{ message }}</p>
   </div>
 </template>
 
-
 <script setup>
-import { ref } from 'vue'
-import DropZone from '../components/DropZone.vue'
+import { ref } from "vue";
+import DropZone from "../components/DropZone.vue";
 
 // Elementos arrastrables
-const items1 = ref([
+const items = ref([
   {
-    id: 'title',
-    label: 'Ejemplo de Drag and Drop',
-    type: 'title',
-    zone: 'outside'
+    id: "tag1",
+    label: "arma extra 1",
+    type: "tag",
+    zone: "container-arma",
   },
   {
-    id: 'box',
-    label: '',
-    type: 'box',
-    zone: 'outside'
+    id: "tag2",
+    label: "arma extra 2",
+    type: "tag",
+    zone: "container-arma",
   },
   {
-    id: 'tag1',
-    label: 'Elemento extra 1',
-    type: 'tag',
-    zone: 'outside'
+    id: "tag3",
+    label: "lugar extra 1",
+    type: "tag",
+    zone: "container-lugar",
   },
   {
-    id: 'tag2',
-    label: 'Elemento extra 2',
-    type: 'tag',
-    zone: 'outside'
-  }
-])
-
-const items2 = ref([
-  {
-    id: 'title',
-    label: 'Ejemplo de Drag and Drop',
-    type: 'title',
-    zone: 'outside'
+    id: "tag4",
+    label: "lugar extra 2",
+    type: "tag",
+    zone: "container-lugar",
   },
-  {
-    id: 'box',
-    label: '',
-    type: 'box',
-    zone: 'outside'
-  },
-  {
-    id: 'tag1',
-    label: 'Elemento extra 1',
-    type: 'tag',
-    zone: 'outside'
-  },
-  {
-    id: 'tag2',
-    label: 'Elemento extra 2',
-    type: 'tag',
-    zone: 'outside'
-  }
-])
-
-const items3 = ref([
-  {
-    id: 'title',
-    label: 'Ejemplo de Drag and Drop',
-    type: 'title',
-    zone: 'outside'
-  },
-  {
-    id: 'box',
-    label: '',
-    type: 'box',
-    zone: 'outside'
-  },
-  {
-    id: 'tag1',
-    label: 'Elemento extra 1',
-    type: 'tag',
-    zone: 'outside'
-  },
-  {
-    id: 'tag2',
-    label: 'Elemento extra 2',
-    type: 'tag',
-    zone: 'outside'
-  }
-])
+]);
 // Id del elemento que se está arrastrando
-const draggedItemId = ref(null)
+const draggedItemId = ref(null);
 
 // Mensaje tipo #p1 del ejemplo original
-const message = ref('')
+const message = ref("");
 
 // Devuelve los items que están en una zona concreta
 const itemsByZone = (zone) => {
-  return items.value.filter(item => item.zone === zone)
-}
+  return items.value.filter((item) => item.zone === zone);
+};
 
 // Handlers de drag & drop (los llaman los DropZone)
 const onDragStart = (itemId) => {
-  draggedItemId.value = itemId
-  message.value = 'ACABAS DE COGER UN ELEMENTO'
-}
+  draggedItemId.value = itemId;
+  message.value = "ACABAS DE COGER UN ELEMENTO";
+};
 
 const onDragOver = () => {
   if (draggedItemId.value) {
-    message.value = 'ESTÁ EN EL ELEMENTO'
+    message.value = "ESTÁ EN EL ELEMENTO";
   }
-}
+};
 
 const onDrop = (zoneId) => {
-  if (!draggedItemId.value) return
+  if (!draggedItemId.value) return;
 
-  const item = items.value.find(i => i.id === draggedItemId.value)
+  const item = items.value.find((i) => i.id === draggedItemId.value);
   if (item) {
-    item.zone = zoneId
+    item.zone = zoneId;
   }
 
-  message.value = 'SE HA SOLTADO EL ELEMENTO'
-  draggedItemId.value = null
-}
+  message.value = "SE HA SOLTADO EL ELEMENTO";
+  draggedItemId.value = null;
+};
 </script>
 
 <style scoped>
 .page {
   padding: 1.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 h1 {
