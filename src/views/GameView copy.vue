@@ -6,8 +6,6 @@
     </p>
 
     <div class="zones">
-      <!-- <div> -->
-        <p>hola esta es la primera frase, el primer hueco:
       <!-- Zona libre -->
       <DropZone
         class="drop-zone--outside"
@@ -29,7 +27,6 @@
         @drag-over="onDragOver"
         @drop="onDrop"
       />
-    </p>
     </div>
 
     <p id="p1">{{ message }}</p>
@@ -42,7 +39,7 @@ import { ref } from 'vue'
 import DropZone from '../components/DropZone.vue'
 
 // Elementos arrastrables
-const items1 = ref([
+const items = ref([
   {
     id: 'title',
     label: 'Ejemplo de Drag and Drop',
@@ -69,59 +66,6 @@ const items1 = ref([
   }
 ])
 
-const items2 = ref([
-  {
-    id: 'title',
-    label: 'Ejemplo de Drag and Drop',
-    type: 'title',
-    zone: 'outside'
-  },
-  {
-    id: 'box',
-    label: '',
-    type: 'box',
-    zone: 'outside'
-  },
-  {
-    id: 'tag1',
-    label: 'Elemento extra 1',
-    type: 'tag',
-    zone: 'outside'
-  },
-  {
-    id: 'tag2',
-    label: 'Elemento extra 2',
-    type: 'tag',
-    zone: 'outside'
-  }
-])
-
-const items3 = ref([
-  {
-    id: 'title',
-    label: 'Ejemplo de Drag and Drop',
-    type: 'title',
-    zone: 'outside'
-  },
-  {
-    id: 'box',
-    label: '',
-    type: 'box',
-    zone: 'outside'
-  },
-  {
-    id: 'tag1',
-    label: 'Elemento extra 1',
-    type: 'tag',
-    zone: 'outside'
-  },
-  {
-    id: 'tag2',
-    label: 'Elemento extra 2',
-    type: 'tag',
-    zone: 'outside'
-  }
-])
 // Id del elemento que se está arrastrando
 const draggedItemId = ref(null)
 
