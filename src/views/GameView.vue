@@ -121,6 +121,28 @@ const onDrop = (zoneId) => {
   if (!draggedItemId.value) return;
 
   const item = items.value.find((i) => i.id === draggedItemId.value);
+  
+  //chekeo de zona
+  const gapType = zoneId.split('-')[1]; //me quedo con la segunda parte
+  const itemType = item.zone.split('-')[1]; //me quedo con el grupo parte del objeto
+
+  if (gapType !== itemType) {
+    message.value = "NO PUEDES SOLTAR ESTE ELEMENTO AQUÍ";
+    draggedItemId.value = null;
+    return;
+  }
+
+  //max length de 1 en el gap (no en el container)
+  if(zoneId.startsWith('gap')) {
+
+  const currentItems = itemsByZone(zoneId);
+  if (currentItems.length >= 1) {
+    message.value = currentItems.length + " ELEMENTO(S) YA ESTÁN EN ESTA ZONA";
+    draggedItemId.value = null;
+    return;
+  }
+  }
+  
   if (item) {
     item.zone = zoneId;
   }
