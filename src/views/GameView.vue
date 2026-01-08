@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <h1>Ejemplo de Drag and Drop con Vue</h1>
     <p class="intro">
       Arrastra los elementos entre la zona libre y el contenedor.
     </p>
@@ -13,27 +12,40 @@
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-arma"
-          title="_____________"
+          title=""
           :items="itemsByZone('gap-arma')"
           group="arma"
           @drag-start="onDragStart"
           @drag-over="onDragOver"
           @drop="onDrop"
         />
-      </p>
-      <p>
+
         o pero que ha pasado para que de repente haya otro hueco
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-lugar"
-          title="_____________"
+          title=""
           :items="itemsByZone('gap-lugar')"
           group="lugar"
           @drag-start="onDragStart"
           @drag-over="onDragOver"
           @drop="onDrop"
         />
+
+        y ahora otro hueco mas
+        <DropZone
+          class="drop-zone--outside"
+          zone-id="gap-emocion"
+          title=""
+          :items="itemsByZone('gap-emocion')"
+          group="emocion"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
       </p>
+    </div>
+    <div class="zones">
 
       <!-- Contenedor -->
       <DropZone
@@ -57,43 +69,103 @@
         @drag-over="onDragOver"
         @drop="onDrop"
       />
+          <DropZone
+        class="drop-zone--container"
+        zone-id="container-emocion"
+        title="hueco 3"
+        :items="itemsByZone('container-emocion')"
+        group="emocion"
+        @drag-start="onDragStart"
+        @drag-over="onDragOver"
+        @drop="onDrop"
+      />
     </div>
 
+
     <p id="p1">{{ message }}</p>
+    <!-- habilitar botón cuando todos los gaps no esten vacios -->
+    <button @click="gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)">Continuar</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import DropZone from "../components/DropZone.vue";
+import { computed } from "vue";
+import { useGameStartStore } from '@/stores/gameStart';
+const gameStartStore = useGameStartStore();
 
 // Elementos arrastrables
 const items = ref([
   {
-    id: "tag1",
-    label: "arma extra 1",
+    id: "arma1",
+    label: "espada",
     type: "tag",
     zone: "container-arma",
   },
   {
-    id: "tag2",
-    label: "arma extra 2",
+    id: "arma2",
+    label: "catana",
     type: "tag",
     zone: "container-arma",
   },
   {
-    id: "tag3",
-    label: "lugar extra 1",
+    id: "arma3",
+    label: "pistola",
+    type: "tag",
+    zone: "container-arma",
+  },
+  {
+    id: "lugar1",
+    label: "bosque",
     type: "tag",
     zone: "container-lugar",
   },
   {
-    id: "tag4",
-    label: "lugar extra 2",
+    id: "lugar2",
+    label: "ciudad",
     type: "tag",
     zone: "container-lugar",
+  },
+  {
+    id: "lugar3",
+    label: "cielo",
+    type: "tag",
+    zone: "container-lugar",
+  },
+    {
+    id: "emocion1",
+    label: "miedo",
+    type: "tag",
+    zone: "container-emocion",
+  },
+    {
+    id: "emocion2",
+    label: "curiosidad",
+    type: "tag",
+    zone: "container-emocion",
+  },
+    {
+    id: "emocion3",
+    label: "emoción",
+    type: "tag",
+    zone: "container-emocion",
   },
 ]);
+
+
+const selectedArma = computed(() =>
+  items.value.find(i => i.zone === "gap-arma")?.label
+);
+
+const selectedLugar = computed(() =>
+  items.value.find(i => i.zone === "gap-lugar")?.label
+);
+
+const selectedEmocion = computed(() =>
+  items.value.find(i => i.zone === "gap-emocion")?.label
+);
+
 // Id del elemento que se está arrastrando
 const draggedItemId = ref(null);
 

@@ -7,7 +7,8 @@
     <h2 v-if="title">{{ title }}</h2>
 
     <div v-if="items.length === 0" class="empty">
-      (Suelta elementos aquí)
+      <h2>_________________</h2>
+      <!-- (Suelta elementos aquí) -->
     </div>
 
     <div
@@ -96,6 +97,12 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
 /* Estas clases se usan desde App.vue (class="drop-zone--outside", etc.) */
 .drop-zone--outside {
   background: #f5f5f5;
+  display: inline-block;
+  min-width: 100px;
+  min-height: 30px;
+  padding: 0.2rem 0.5rem;
+  vertical-align: middle;
+  border: 1px dashed #ccc;
 }
 
 .drop-zone--container {

@@ -2,16 +2,22 @@ import { defineStore } from 'pinia';
 
 export const useGameStartStore = defineStore ("quiz", {
     state: () => ({
-        gameStarted: false,
+        gameStartedStatus: "no", //no, progress , finished
+        arma: null,
+        lugar: null,
+        emocion: null,
     }),
     actions: {
         startGame() {
-            this.gameStarted = true;
-            console.log("Game started:", this.gameStarted);
+            this.gameStartedStatus = "progress";
+            console.log("Game started:", this.gameStartedStatus);
         },
-        endGame() {
-            this.gameStarted = false;
-            console.log("Game started:", this.gameStarted);
+        endGame(arma, lugar, emocion) {
+            this.arma = arma;
+            this.lugar = lugar;
+            this.emocion = emocion;
+            this.gameStartedStatus = "finished";
+            console.log("Game started:", this.gameStartedStatus);
         },
 
     },
