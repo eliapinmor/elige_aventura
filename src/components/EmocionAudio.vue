@@ -1,40 +1,25 @@
 <template>
-    <ArmaTexto />
-    <LugarImagen />
-
+    <audio :src="emocionAudio" autoplay></audio>
 </template>
-
 <script setup>
 import { useGameStartStore } from '@/stores/gameStart';
 import { computed } from 'vue';
-import ArmaTexto from '../components/ArmaTexto.vue';
-import LugarImagen from '@/components/LugarImagen.vue';
-import { Howl } from 'howler';
+import { playMusica } from '@/assets/musicManager';
 const gameStartStore = useGameStartStore();
 
 const emocionAudio = computed(() => {
   switch (gameStartStore.emocion) {
     case "miedo":
-      return "audio/miedo.mp3";
+    playMusica("audio/miedo.mp3");
+        return "audio/miedo.mp3";
     case "curiosidad":
+      playMusica("audio/curiosidad.mp3");
       return "audio/curiosidad.mp3";
     case "emoción":
+        playMusica("audio/emocion.mp3");
       return "audio/emocion.mp3";
     default:
       return "vacio";
   }
 });
-
-//llamar a js de musica
-//howler
-
-
 </script>
-<style scoped>
-.imgLugar {
-  width: 400px;
-  height: auto;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-</style>
