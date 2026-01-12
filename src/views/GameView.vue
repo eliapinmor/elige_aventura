@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <p class="intro">
+    <p class="info">
       Arrastra los elementos entre la zona libre y el contenedor.
     </p>
 
@@ -84,7 +84,7 @@
 
     <p id="p1">{{ message }}</p>
     <!-- habilitar botón cuando todos los gaps no esten vacios -->
-    <button class="btn-continue" @click="gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)">Continuar</button>
+    <ButtonContinue buttonText="CONTINUAR" @click="gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)" />
   </div>
 </template>
 
@@ -92,6 +92,7 @@
 import { ref } from "vue";
 import DropZone from "../components/DropZone.vue";
 import { computed } from "vue";
+import ButtonContinue from '@/components/ButtonContinue.vue';
 import { useGameStartStore } from '@/stores/gameStart';
 const gameStartStore = useGameStartStore();
 
@@ -105,7 +106,7 @@ const items = ref([
   },
   {
     id: "arma2",
-    label: "catana",
+    label: "katana",
     type: "tag",
     zone: "container-arma",
   },
@@ -245,61 +246,24 @@ h1 {
   gap: 1rem;
 }
 
-.btn-continue {
-  margin-top: 2.5rem;
-  padding: 1rem 3.2rem;
+.info {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
 
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  color: #1e40af;
 
-  color: white;
-  background: linear-gradient(
-    135deg,
-    #c77dff,
-    #9d4edd
-  );
+  background: rgba(59, 130, 246, 0.08);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
 
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
+  width: fit-content;
+  margin: 0.75rem auto 1.25rem;
 
-  box-shadow:
-    0 8px 20px rgba(157, 78, 221, 0.45),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.25);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
-}
-
-/* Hover */
-.btn-continue:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 12px 28px rgba(157, 78, 221, 0.6),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.3);
-  filter: brightness(1.08);
-}
-
-/* Click */
-.btn-continue:active {
-  transform: translateY(1px);
-  box-shadow:
-    0 5px 14px rgba(157, 78, 221, 0.5),
-    inset 0 3px 0 rgba(0, 0, 0, 0.35);
-}
-
-/* Deshabilitado */
-.btn-continue:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-  filter: grayscale(0.6);
+  opacity: 0.9;
 }
 
 
-/* Solo layout/colores generales, estilos de la zona en DropZone.vue */
+
 </style>

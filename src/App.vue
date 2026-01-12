@@ -19,46 +19,25 @@ const gameStartStore = useGameStartStore();
 </script>
 <style scoped>
 .main-title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 800;
   text-align: center;
   margin: 2rem 0 3rem;
 
-  background: linear-gradient(
-    135deg,
-    #e0aaff,
-    #c77dff,
-    #9d4edd
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* Color lila elegante */
+  color: #a855f7;
 
+  /* Glow suave */
   text-shadow:
-    0 0 12px rgba(199, 125, 255, 0.6),
-    0 0 24px rgba(157, 78, 221, 0.4);
+    0 2px 10px rgba(168, 85, 247, 0.35),
+    0 0 30px rgba(168, 85, 247, 0.25);
 
-  animation: titleGlow 4s ease-in-out infinite;
+  /* Espaciado */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
 }
 
-/* Glow suave */
-@keyframes titleGlow {
-  0% {
-    text-shadow:
-      0 0 10px rgba(199, 125, 255, 0.5),
-      0 0 20px rgba(157, 78, 221, 0.3);
-  }
-  50% {
-    text-shadow:
-      0 0 18px rgba(199, 125, 255, 0.8),
-      0 0 32px rgba(157, 78, 221, 0.6);
-  }
-  100% {
-    text-shadow:
-      0 0 10px rgba(199, 125, 255, 0.5),
-      0 0 20px rgba(157, 78, 221, 0.3);
-  }}
 
 </style>

@@ -8,9 +8,16 @@ howler = new Howl({
     src: [emocionAudio],
     volume: songVolume,
     onload: () => {
-    
+      console.log("Audio cargado, intentando reproducir:", emocionAudio);
       howler.play();
-
-      console.log("Audio cargado y reproduciéndose");
     },
+    onloaderror: (id, error) => {
+      console.error('Error al cargar el audio:', error, 'para:', emocionAudio);
+    },
+    onplayerror: (id, error) => {
+      console.error('Error al reproducir el audio:', error, 'para:', emocionAudio);
+    },
+    onplay: () => {
+      console.log("Audio reproduciéndose:", emocionAudio);
+    }
   });}

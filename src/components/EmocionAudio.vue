@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <audio :src="emocionAudio" autoplay></audio>
 </template>
 <script setup>
@@ -22,4 +22,4 @@ const emocionAudio = computed(() => {
       return "vacio";
   }
 });
-</script>
+</script> -->
