@@ -4,11 +4,11 @@
       Arrastra los elementos entre la zona libre y el contenedor.
     </p>
 
-    <div class="zones">
+    <div class="zones story-text">
       <!-- <div> -->
-      <p>
-        hola esta es la primera frase, el primer hueco:
-        <!-- Zona libre -->
+      <span>
+        Te han empezado a perseguir un grupo de seres indescriptibles, de otro planeta. Estabas en casa y has conseguido coger una mochila y meter dentro lo necesario para sobrevivir. En tu mochila llevas una
+
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-arma"
@@ -20,7 +20,11 @@
           @drop="onDrop"
         />
 
-        o pero que ha pasado para que de repente haya otro hueco
+          .
+        </span>
+        <span>
+          LLevas ya un rato corriendo cuando te empiezas a adentrar en el
+
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-lugar"
@@ -31,8 +35,9 @@
           @drag-over="onDragOver"
           @drop="onDrop"
         />
-
-        y ahora otro hueco mas
+        </span>
+        <span>
+          Empiezas a respirar aliviado, pero de repente sientes
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-emocion"
@@ -43,7 +48,9 @@
           @drag-over="onDragOver"
           @drop="onDrop"
         />
-      </p>
+
+          al ver lo que hay delante de ti.
+        </span>
     </div>
     <div class="zones">
 
@@ -124,7 +131,7 @@ const items = ref([
   },
   {
     id: "lugar2",
-    label: "ciudad",
+    label: "centro de la ciudad",
     type: "tag",
     zone: "container-lugar",
   },
@@ -246,22 +253,48 @@ h1 {
   gap: 1rem;
 }
 
+.story-text {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f8fafc;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  padding: 2rem;
+  border-radius: 16px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+.story-text span {
+  margin-right: 0.25rem; /* espacio mínimo entre palabras y gaps */
+}
+
+
 .info {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  max-width: 680px;
+  margin: 0 auto 1.5rem;
+
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: 0.85rem;
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: center;
 
-  color: #1e40af;
+  color: #1d4ed8; /* azul info */
 
-  background: rgba(59, 130, 246, 0.08);
-  padding: 0.4rem 0.75rem;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 
-  width: fit-content;
-  margin: 0.75rem auto 1.25rem;
-
-  opacity: 0.9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 

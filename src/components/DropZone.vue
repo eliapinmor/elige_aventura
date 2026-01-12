@@ -7,7 +7,7 @@
     <h2 v-if="title">{{ title }}</h2>
 
     <div v-if="items.length === 0" class="empty">
-      <h2>_________________</h2>
+      <h2>vacío </h2>
       <!-- (Suelta elementos aquí) -->
     </div>
 
@@ -70,43 +70,71 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
 </script>
 
 <style scoped>
+/* --------------------------------------
+   Base DropZone
+-------------------------------------- */
 .drop-zone {
-  min-width: 260px;
-  min-height: 220px;
-  padding: 1rem;
+  padding: 0; /* cada tipo tiene su padding */
   box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  min-width: auto;   /* importante */
+  min-height: auto;  /* importante */
 }
 
-.drop-zone h2 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-}
-
-.empty {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: #666;
-}
-
-.item-wrapper + .item-wrapper {
-  margin-top: 0.5rem;
-}
-
-/* Estas clases se usan desde App.vue (class="drop-zone--outside", etc.) */
+/* --------------------------------------
+   Gaps inline con el texto
+-------------------------------------- */
 .drop-zone--outside {
-  background: #f5f5f5;
   display: inline-block;
-  min-width: 100px;
-  min-height: 30px;
-  padding: 0.2rem 0.5rem;
-  vertical-align: middle;
-  border: 1px dashed #ccc;
+  min-width: 100px;       /* ancho pequeño y flexible */
+  max-width: 140px;      /* evita que se estire demasiado */
+  height: 30px;          /* altura de la línea */
+  padding: 0 0.5rem;
+
+
+  border: 1px #ccc;
+  border-radius: 8px;
+
+  background: #f5f5f5;
+  color: #1e293b;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  align-items: center;
+  text-align: center;
 }
 
+
+
+/* Guion de subrayado para vacío */
+.drop-zone--outside .empty h2 {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #84909ec5;
+  font-style: italic;
+
+}
+
+/* --------------------------------------
+   Contenedores grandes
+-------------------------------------- */
 .drop-zone--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+  min-height: 120px;
+
   background: blueviolet;
   color: white;
+
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
+
 </style>
