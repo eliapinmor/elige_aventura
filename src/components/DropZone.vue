@@ -7,7 +7,7 @@
     <h2 v-if="title">{{ title }}</h2>
 
     <div v-if="items.length === 0" class="empty">
-      <h2>vacío </h2>
+      <h2>vacío</h2>
       <!-- (Suelta elementos aquí) -->
     </div>
 
@@ -108,7 +108,6 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
 
 
 
-/* Guion de subrayado para vacío */
 .drop-zone--outside .empty h2 {
   font-size: 0.9rem;
   margin: 0;
@@ -129,12 +128,17 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
   min-width: 200px;
   min-height: 120px;
 
-  background: blueviolet;
+  background: #ff3eaf;
   color: white;
 
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.drop-zone--container h2 {
+
+  margin: 0;
 }
 
 </style>

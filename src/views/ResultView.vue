@@ -1,8 +1,12 @@
 <template>
-    <ArmaTexto />
+  <div>
+    <div class="texto">
+      <ArmaTexto />
+    </div>
+
     <LugarImagen />
     <button @click="playMusic">Reproducir Música</button>
-
+  </div>
 </template>
 
 <script setup>

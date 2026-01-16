@@ -25,14 +25,12 @@ defineEmits(['click']);
   border: none;
   cursor: pointer;
 
-  /* Gradiente lila elegante */
-  background: linear-gradient(135deg, #c084fc, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, #ffff99, #ff8f5b, #ff3eaf);
 
   color: white;
 
-  /* Sombra profesional */
-  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35),
-    inset 0 0 0 rgba(255, 255, 255, 0);
+  box-shadow: 0 10px 30px #ff8f5b,
+    inset 0 0 0 #ff8f5b;
 
   transition: all 0.25s ease;
 }
@@ -40,7 +38,7 @@ defineEmits(['click']);
 .btn-continue:hover {
   transform: translateY(-2px);
 
-  box-shadow: 0 15px 45px rgba(168, 85, 247, 0.55),
-    inset 0 0 8px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px #ff8f5b,
+    inset 0 0 0 #ff8f5b;
 }
 </style>

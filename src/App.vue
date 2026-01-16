@@ -20,38 +20,24 @@ const gameStartStore = useGameStartStore();
 </script>
 <style>
 .main-title {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-family: 'Honk', sans-serif;
+  font-size: 80px;
   font-weight: 900;
   text-align: center;
-  margin: 2.5rem 0 3rem;
+  margin: auto;
+  padding-bottom: 35px;
 
-  color: #e9d5ff;
 
   letter-spacing: 0.15em;
   text-transform: uppercase;
-
-  text-shadow:
-    0 2px 12px rgba(168, 85, 247, 0.5),
-    0 0 35px rgba(168, 85, 247, 0.35);
 }
 
 
 body {
   margin: 0;
   min-height: 100vh;
-
   font-family: 'Inter', system-ui, sans-serif;
-
-  background: radial-gradient(
-      circle at top,
-      #c084fc 0%,
-      #7c3aed 35%,
-      #4c1d95 70%,
-      #1e1b4b 100%
-  );
-
-  color: #f8fafc;
+  background-color: #d9d9d9;
 }
 
 

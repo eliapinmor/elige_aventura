@@ -1,13 +1,15 @@
 <template>
   <div class="page">
     <p class="info">
-      Arrastra los elementos entre la zona libre y el contenedor.
+      ⓘ Arrastra los elementos entre la zona libre y el contenedor.
     </p>
 
     <div class="zones story-text">
       <!-- <div> -->
       <span>
-        Te han empezado a perseguir un grupo de seres indescriptibles, de otro planeta. Estabas en casa y has conseguido coger una mochila y meter dentro lo necesario para sobrevivir. En tu mochila llevas una
+        Te han aparecido un grupo de seres indescriptibles, de otro planeta. En
+        ese momento estabas en casa y has conseguido coger una mochila y meter
+        dentro lo necesario para sobrevivir. Para poder defenderte coges una
 
         <DropZone
           class="drop-zone--outside"
@@ -20,10 +22,10 @@
           @drop="onDrop"
         />
 
-          .
-        </span>
-        <span>
-          LLevas ya un rato corriendo cuando te empiezas a adentrar en el
+        .
+      </span>
+      <span>
+        Llevas ya un rato corriendo cuando te empiezas a adentrar en el
 
         <DropZone
           class="drop-zone--outside"
@@ -35,9 +37,9 @@
           @drag-over="onDragOver"
           @drop="onDrop"
         />
-        </span>
-        <span>
-          Empiezas a respirar aliviado, pero de repente sientes
+      </span>
+      <span>
+        Empiezas a respirar aliviado, pero de repente sientes
         <DropZone
           class="drop-zone--outside"
           zone-id="gap-emocion"
@@ -49,49 +51,59 @@
           @drop="onDrop"
         />
 
-          al ver lo que hay delante de ti.
-        </span>
+        al ver lo que hay delante de ti.
+      </span>
     </div>
-    <div class="zones">
-
-      <!-- Contenedor -->
-      <DropZone
-        class="drop-zone--container"
-        zone-id="container-arma"
-        title="hueco 1"
-        :items="itemsByZone('container-arma')"
-        group="arma"
-        @drag-start="onDragStart"
-        @drag-over="onDragOver"
-        @drop="onDrop"
-      />
-
-      <DropZone
-        class="drop-zone--container"
-        zone-id="container-lugar"
-        title="hueco 2"
-        :items="itemsByZone('container-lugar')"
-        group="lugar"
-        @drag-start="onDragStart"
-        @drag-over="onDragOver"
-        @drop="onDrop"
-      />
-          <DropZone
-        class="drop-zone--container"
-        zone-id="container-emocion"
-        title="hueco 3"
-        :items="itemsByZone('container-emocion')"
-        group="emocion"
-        @drag-start="onDragStart"
-        @drag-over="onDragOver"
-        @drop="onDrop"
-      />
+    <div class="zones-container">
+      <div>
+        <DropZone
+          class="drop-zone--container"
+          zone-id="container-arma"
+          title="hueco 1"
+          :items="itemsByZone('container-arma')"
+          group="arma"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
+      </div>
+      <div>
+        <DropZone
+          class="drop-zone--container"
+          zone-id="container-lugar"
+          title="hueco 2"
+          :items="itemsByZone('container-lugar')"
+          group="lugar"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
+      </div>
+      <div>
+        <DropZone
+          class="drop-zone--container"
+          zone-id="container-emocion"
+          title="hueco 3"
+          :items="itemsByZone('container-emocion')"
+          group="emocion"
+          @drag-start="onDragStart"
+          @drag-over="onDragOver"
+          @drop="onDrop"
+        />
+      </div>
     </div>
-
 
     <p id="p1">{{ message }}</p>
     <!-- habilitar botón cuando todos los gaps no esten vacios -->
-    <ButtonContinue buttonText="CONTINUAR" @click="gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)" />
+    <div style="
+    display: flex; justify-content: center;">
+      <ButtonContinue
+        buttonText="CONTINUAR"
+        @click="
+          gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)
+        "
+      />
+    </div>
   </div>
 </template>
 
@@ -99,8 +111,8 @@
 import { ref } from "vue";
 import DropZone from "../components/DropZone.vue";
 import { computed } from "vue";
-import ButtonContinue from '@/components/ButtonContinue.vue';
-import { useGameStartStore } from '@/stores/gameStart';
+import ButtonContinue from "@/components/ButtonContinue.vue";
+import { useGameStartStore } from "@/stores/gameStart";
 const gameStartStore = useGameStartStore();
 
 // Elementos arrastrables
@@ -141,19 +153,19 @@ const items = ref([
     type: "tag",
     zone: "container-lugar",
   },
-    {
+  {
     id: "emocion1",
     label: "miedo",
     type: "tag",
     zone: "container-emocion",
   },
-    {
+  {
     id: "emocion2",
     label: "curiosidad",
     type: "tag",
     zone: "container-emocion",
   },
-    {
+  {
     id: "emocion3",
     label: "emoción",
     type: "tag",
@@ -161,17 +173,16 @@ const items = ref([
   },
 ]);
 
-
-const selectedArma = computed(() =>
-  items.value.find(i => i.zone === "gap-arma")?.label
+const selectedArma = computed(
+  () => items.value.find((i) => i.zone === "gap-arma")?.label
 );
 
-const selectedLugar = computed(() =>
-  items.value.find(i => i.zone === "gap-lugar")?.label
+const selectedLugar = computed(
+  () => items.value.find((i) => i.zone === "gap-lugar")?.label
 );
 
-const selectedEmocion = computed(() =>
-  items.value.find(i => i.zone === "gap-emocion")?.label
+const selectedEmocion = computed(
+  () => items.value.find((i) => i.zone === "gap-emocion")?.label
 );
 
 // Id del elemento que se está arrastrando
@@ -201,10 +212,10 @@ const onDrop = (zoneId) => {
   if (!draggedItemId.value) return;
 
   const item = items.value.find((i) => i.id === draggedItemId.value);
-  
+
   //chekeo de zona
-  const gapType = zoneId.split('-')[1]; //me quedo con la segunda parte
-  const itemType = item.zone.split('-')[1]; //me quedo con el grupo parte del objeto
+  const gapType = zoneId.split("-")[1]; //me quedo con la segunda parte
+  const itemType = item.zone.split("-")[1]; //me quedo con el grupo parte del objeto
 
   if (gapType !== itemType) {
     message.value = "NO PUEDES SOLTAR ESTE ELEMENTO AQUÍ";
@@ -213,16 +224,16 @@ const onDrop = (zoneId) => {
   }
 
   //max length de 1 en el gap (no en el container)
-  if(zoneId.startsWith('gap')) {
+  if (zoneId.startsWith("gap")) {
+    const currentItems = itemsByZone(zoneId);
+    if (currentItems.length >= 1) {
+      message.value =
+        currentItems.length + " ELEMENTO(S) YA ESTÁN EN ESTA ZONA";
+      draggedItemId.value = null;
+      return;
+    }
+  }
 
-  const currentItems = itemsByZone(zoneId);
-  if (currentItems.length >= 1) {
-    message.value = currentItems.length + " ELEMENTO(S) YA ESTÁN EN ESTA ZONA";
-    draggedItemId.value = null;
-    return;
-  }
-  }
-  
   if (item) {
     item.zone = zoneId;
   }
@@ -235,6 +246,7 @@ const onDrop = (zoneId) => {
 <style scoped>
 .page {
   padding: 1.5rem;
+  padding-top: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 }
@@ -247,20 +259,25 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.zones {
+.zones,
+.zones-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.zones-container {
+  justify-content: center;
 }
 
 .story-text {
   max-width: 800px;
   margin: 0 auto 2.5rem;
 
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #f8fafc;
+  color: #333;
 
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
@@ -278,25 +295,25 @@ h1 {
   margin-right: 0.25rem; /* espacio mínimo entre palabras y gaps */
 }
 
-
 .info {
   max-width: 680px;
   margin: 0 auto 1.5rem;
 
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   font-size: 0.85rem;
   line-height: 1.5;
   text-align: center;
 
-  color: #1d4ed8; /* azul info */
-
-  background: rgba(255, 255, 255, 0.85);
+  color: #ffff;
+  background: #0b81ff9f;
   padding: 0.5rem 1rem;
   border-radius: 10px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-
-
+.container {
+  margin: auto;
+  display: flex;
+}
 </style>

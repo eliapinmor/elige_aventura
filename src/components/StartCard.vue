@@ -28,8 +28,7 @@ const gameStartStore = useGameStartStore();
   margin: 0 auto 3rem;
   padding: 2.5rem 3rem;
 
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
+
 
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -47,13 +46,13 @@ const gameStartStore = useGameStartStore();
   font-weight: 800;
   letter-spacing: 0.12em;
 
-  color: #f5d0fe;
+  color: #333;
 }
 
 .start-card p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #f1f5f9;
+  color: #333;
   margin-bottom: 1rem;
 }
 
@@ -65,7 +64,7 @@ const gameStartStore = useGameStartStore();
 .start-card li {
   margin-bottom: 0.6rem;
   line-height: 1.5;
-  color: #e5e7eb;
+  color: #464646;
 }
 
 .center {
