@@ -99,6 +99,11 @@
     display: flex; justify-content: center;">
       <ButtonContinue
         buttonText="CONTINUAR"
+        :disabled="!(
+          selectedArma &&
+          selectedLugar &&
+          selectedEmocion
+        )"
         @click="
           gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)
         "

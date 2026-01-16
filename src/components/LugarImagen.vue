@@ -11,7 +11,7 @@ const lugarImagen = computed(() => {
   switch (gameStartStore.lugar) {
     case "bosque":
       return "img/bosque.jpg";
-    case "ciudad":
+    case "centro de la ciudad":
       return "img/ciudad.jpg";
     case "cielo":
       return "img/cielo.jpg";

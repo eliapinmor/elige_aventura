@@ -87,8 +87,7 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
 -------------------------------------- */
 .drop-zone--outside {
   display: inline-block;
-  min-width: 100px;       /* ancho pequeño y flexible */
-  max-width: 140px;      /* evita que se estire demasiado */
+  min-width: 100px;
   height: 30px;          /* altura de la línea */
   padding: 0 0.5rem;
 

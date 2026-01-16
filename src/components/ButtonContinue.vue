@@ -1,11 +1,15 @@
 <template>
-  <button class="btn-continue" @click="$emit('click')">{{ buttonText }}</button>
+  <button class="btn-continue" :disabled="disabled" @click="$emit('click')">{{ buttonText }}</button>
 </template>
 <script setup>
 defineProps({
   buttonText: {
     type: String,
     default: "Continuar"
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 
