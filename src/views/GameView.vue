@@ -37,6 +37,7 @@
           @drag-over="onDragOver"
           @drop="onDrop"
         />
+        .
       </span>
       <span>
         Empiezas a respirar aliviado, pero de repente sientes
@@ -93,10 +94,10 @@
       </div>
     </div>
 
-    <p id="p1">{{ message }}</p>
+    <!-- <p id="p1">{{ message }}</p> -->
     <!-- habilitar botón cuando todos los gaps no esten vacios -->
     <div style="
-    display: flex; justify-content: center;">
+    display: flex; justify-content: center; gap: 40px;">
       <ButtonContinue
         route="/result"
         buttonText="CONTINUAR"
@@ -109,6 +110,7 @@
           gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)
         "
       />
+      <button @click="limpiarSeleccion" class="btn-limpiar">Limpiar</button>
     </div>
   </div>
 </template>
@@ -195,6 +197,13 @@ const selectedEmocion = computed(
   () => items.value.find((i) => i.zone === "gap-emocion")?.label
 );
 
+const limpiarSeleccion = () => {
+  items.value.forEach((item) => {
+    const itemType = item.zone.split("-")[1]; //me quedo con el grupo parte del objeto
+    item.zone = `container-${itemType}`;
+  });
+};
+
 // Id del elemento que se está arrastrando
 const draggedItemId = ref(null);
 
@@ -227,20 +236,21 @@ const onDrop = (zoneId) => {
   const gapType = zoneId.split("-")[1]; //me quedo con la segunda parte
   const itemType = item.zone.split("-")[1]; //me quedo con el grupo parte del objeto
 
-  if (gapType !== itemType) {
-    message.value = "NO PUEDES SOLTAR ESTE ELEMENTO AQUÍ";
-    draggedItemId.value = null;
-    return;
-  }
+  // if (gapType !== itemType) {
+  //   message.value = "NO PUEDES SOLTAR ESTE ELEMENTO AQUÍ";
+  //   draggedItemId.value = null;
+  //   return;
+  // }
 
   //max length de 1 en el gap (no en el container)
   if (zoneId.startsWith("gap")) {
-    const currentItems = itemsByZone(zoneId);
-    if (currentItems.length >= 1) {
-      message.value =
-        currentItems.length + " ELEMENTO(S) YA ESTÁN EN ESTA ZONA";
-      draggedItemId.value = null;
-      return;
+const currentItem = items.value.find(
+      i => i.zone === zoneId && i.id !== item.id
+    );
+
+    if (currentItem) {
+      // devolver el antiguo a su container
+      currentItem.zone = `container-${gapType}`;
     }
   }
 
@@ -278,6 +288,7 @@ h1 {
 
 .zones-container {
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .story-text {
@@ -325,5 +336,28 @@ h1 {
 .container {
   margin: auto;
   display: flex;
+}
+
+.btn-limpiar{
+    font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  padding: 0.9rem 2.8rem;
+  border-radius: 999px;
+
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #0FD4FF, #3240FF);
+
+  color: white;
+
+  box-shadow: 0 10px 30px #3240FF,
+    inset 0 0 0 #3240FF;
+
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 </style>

@@ -9,7 +9,7 @@ const router = createRouter({
   routes: [
     {path: '/', component: () => import('../views/HomeView.vue')},
     {path: '/game' , component: () => import('../views/GameView.vue')},
-    {path: '/result', component: () => import('../views/ResultView.vue')},
+    {path: '/result', component: () => import('../views/ResultView.vue'), meta: { requiresFinishedGame: true } },
   ],
 })
 
@@ -17,8 +17,10 @@ router.beforeEach((to) => {
   const gameStore = useGameStartStore();
 
   if (to.meta.requiresFinishedGame) {
-    if (gameStore.gameStartedStatus !== "finished") {
-      return { name: "game" };
+    if (      !gameStore.arma ||
+      !gameStore.lugar ||
+      !gameStore.emocion) {
+      return { path: "/game" };
     }
   }
 });

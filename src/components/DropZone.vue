@@ -88,7 +88,7 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
 .drop-zone--outside {
   display: inline-block;
   min-width: 100px;
-  height: 30px;          /* altura de la línea */
+  min-height: 30px;          /* altura de la línea */
   padding: 0 0.5rem;
 
 
@@ -127,17 +127,26 @@ defineEmits(['drag-start', 'drag-over', 'drop'])
   min-width: 200px;
   min-height: 120px;
 
-  background: #ff3eaf;
-  color: white;
+  background: #d9d9d9;
 
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  gap: 15px;
 }
 
 .drop-zone--container h2 {
-
+  font-size: 15px;
   margin: 0;
 }
 
+.pill {
+  background: #ff4aa2;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  user-select: none;
+}
 </style>

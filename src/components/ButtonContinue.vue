@@ -21,7 +21,6 @@ defineEmits(['click']);
 </script>
 <style scoped>
 .btn-continue {
-  font-family: "Poppins", "Segoe UI", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -56,5 +55,10 @@ defineEmits(['click']);
   cursor: not-allowed;
   box-shadow: none;
   pointer-events: none;
+}
+
+.btn-continue.disabled:hover {
+  cursor: not-allowed;
+  
 }
 </style>
