@@ -21,3 +21,9 @@ howler = new Howl({
       console.log("Audio reproduciéndose:", emocionAudio);
     }
   });}
+
+export function stopMusica() {
+  if (howler) {
+    howler.stop();
+  }
+}

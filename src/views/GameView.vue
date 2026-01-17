@@ -98,12 +98,13 @@
     <div style="
     display: flex; justify-content: center;">
       <ButtonContinue
+        route="/result"
         buttonText="CONTINUAR"
-        :disabled="!(
+        :class="{disabled: !(
           selectedArma &&
           selectedLugar &&
           selectedEmocion
-        )"
+        )}"
         @click="
           gameStartStore.endGame(selectedArma, selectedLugar, selectedEmocion)
         "
@@ -113,13 +114,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import DropZone from "../components/DropZone.vue";
 import { computed } from "vue";
 import ButtonContinue from "@/components/ButtonContinue.vue";
 import { useGameStartStore } from "@/stores/gameStart";
 const gameStartStore = useGameStartStore();
 
+console.log("estoy en /:", gameStartStore.gameStartedStatus);
+onMounted(() => {
+  gameStartStore.startGame()
+})
 // Elementos arrastrables
 const items = ref([
   {

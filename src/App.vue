@@ -1,7 +1,8 @@
 <template>
   
   <h1 class="main-title">ELIGE TU PROPIA AVENTURA</h1>
-  <div v-if="gameStartStore.gameStartedStatus === 'no'">
+    <router-view />
+  <!-- <div v-if="gameStartStore.gameStartedStatus === 'no'">
     <StartCard />
   </div>
   <div v-else-if="gameStartStore.gameStartedStatus === 'progress'">
@@ -9,7 +10,7 @@
   </div>
   <div v-else-if="gameStartStore.gameStartedStatus === 'finished'">
     <ResultView />
-  </div>
+  </div> -->
 </template>
 <script setup>
 import StartCard from '@/components/StartCard.vue';

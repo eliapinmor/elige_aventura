@@ -1,5 +1,5 @@
 <template>
-  <button class="btn-continue" :disabled="disabled" @click="$emit('click')">{{ buttonText }}</button>
+  <RouterLink :to="route" class="btn-continue" @click="$emit('click')">{{ buttonText }}</RouterLink>
 </template>
 <script setup>
 defineProps({
@@ -7,9 +7,13 @@ defineProps({
     type: String,
     default: "Continuar"
   },
-  disabled: {
-    type: Boolean,
-    default: false
+  // disabled: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  route: {
+    type: String,
+    default: null
   }
 });
 
@@ -37,6 +41,7 @@ defineEmits(['click']);
     inset 0 0 0 #ff8f5b;
 
   transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .btn-continue:hover {
@@ -44,5 +49,12 @@ defineEmits(['click']);
 
   box-shadow: 0 10px 30px #ff8f5b,
     inset 0 0 0 #ff8f5b;
+}
+
+.btn-continue.disabled{
+  background: gray;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;
 }
 </style>

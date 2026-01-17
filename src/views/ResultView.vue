@@ -1,4 +1,5 @@
 <template>
+<!-- <div v-if="gameStartStore.gameStartedStatus === 'yes'"></div> -->
   <div class="page story-text">
     <div class="texto">
       <ArmaTexto />
@@ -8,6 +9,7 @@
     </div>
     <div class="boton-reproducir">
       <a @click="playMusic">⏸️</a>
+      <a @click="stopMusic">▶️</a>
     </div>
   </div>
 </template>
@@ -17,9 +19,9 @@ import { useGameStartStore } from "@/stores/gameStart";
 import { computed } from "vue";
 import ArmaTexto from "../components/ArmaTexto.vue";
 import LugarImagen from "@/components/LugarImagen.vue";
-import { playMusica } from "@/assets/musicManager";
+import { playMusica, stopMusica } from "@/assets/musicManager";
 const gameStartStore = useGameStartStore();
-
+console.log("estoy en /result:", gameStartStore.gameStartedStatus);
 const emocionAudioRuta = computed(() => {
   switch (gameStartStore.emocion) {
     case "miedo":
@@ -35,6 +37,10 @@ const emocionAudioRuta = computed(() => {
 
 const playMusic = () => {
   playMusica(emocionAudioRuta.value);
+};
+
+const stopMusic = () => {
+  stopMusica();
 };
 
 //llamar a js de musica

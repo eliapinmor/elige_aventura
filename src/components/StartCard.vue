@@ -12,7 +12,7 @@
         </ul>
         <!-- <button class="btn-continue" @click="gameStartStore.startGame">START</button> -->
         <div class="center"> 
-            <ButtonContinue buttonText="COMENZAR" @click="gameStartStore.startGame" />
+            <ButtonContinue route="/game" buttonText="COMENZAR" @click="gameStartStore.startGame" />
         </div>
     </div>
 </template>

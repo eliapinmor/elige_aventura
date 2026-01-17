@@ -11,6 +11,10 @@ export const useGameStartStore = defineStore ("quiz", {
     actions: {
         startGame() {
             this.gameStartedStatus = "progress";
+            this.arma = null;
+            this.lugar = null;
+            this.emocion = null;
+            this.emocionRuta = null;
             console.log("Game started:", this.gameStartedStatus);
         },
         endGame(arma, lugar, emocion) {
@@ -23,4 +27,5 @@ export const useGameStartStore = defineStore ("quiz", {
         },
 
     },
+    persist: true,
 });
